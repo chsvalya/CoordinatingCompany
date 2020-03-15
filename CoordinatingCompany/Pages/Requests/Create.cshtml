@@ -1,0 +1,82 @@
+﻿@page
+@model CoordinatingCompany.Pages.Requests.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Request</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Request.DayOfWeek" class="control-label"></label>
+                <select asp-for="Request.DayOfWeek" class="form-control">
+                        <option>Choose day of week</option>
+                        <option>Monday</option>
+                        <option>Tuesday</option>
+                        <option>Wednesday</option>
+                        <option>Thursday</option>
+                        <option>Friday</option>
+                        <option>Saturday</option>
+                        <option>Sunday</option>
+                </select>
+                <span asp-validation-for="Request.DayOfWeek" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Request.Time" class="control-label"></label>
+                <input asp-for="Request.Time" class="form-control" />
+                <span asp-validation-for="Request.Time" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Request.StartDate" class="control-label"></label>
+                <input asp-for="Request.StartDate" class="form-control" />
+                <span asp-validation-for="Request.StartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Request.EndDate" class="control-label"></label>
+                <input asp-for="Request.EndDate" class="form-control" />
+                <span asp-validation-for="Request.EndDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Request.Form" class="control-label"></label>
+                <select asp-for="Request.Form" class="form-control">
+                    <option>Choose form</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>
+                </select>
+                <span asp-validation-for="Request.Form" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Request.CourseId" class="control-label"></label>
+                <input asp-for="Request.CourseId" class="form-control" />
+                <span asp-validation-for="Request.CourseId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Request.SchoolId" class="control-label"></label>
+                <input asp-for="Request.SchoolId" class="form-control" />
+                <span asp-validation-for="Request.SchoolId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
