@@ -11,13 +11,5 @@ namespace CoordinatingCompany.Models
         public string Address { get; set; }
         public string Name { get; set; }
         public List<Request> Requests { get; set; }
-
-        public School(int id, string address, string name)
-        {
-            Id = id;
-            Address = address;
-            Name = name;
-            Requests = new List<Request>();
-        }
     }
 }

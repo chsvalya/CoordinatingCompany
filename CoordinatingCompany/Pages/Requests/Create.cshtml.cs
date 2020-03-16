@@ -17,6 +17,7 @@ namespace CoordinatingCompany.Pages.Requests
         public CreateModel(CoordinatingCompany.Data.CoordinatingCompanyContext context)
         {
             _context = context;
+            Schools = new SelectList(_context.Schools, nameof(School.Id), nameof(School.Name));
         }
 
         public IActionResult OnGet()
@@ -26,6 +27,11 @@ namespace CoordinatingCompany.Pages.Requests
 
         [BindProperty]
         public Request Request { get; set; }
+        public SelectList Schools { get; set; }
+        public SelectList Courses { get; set; }
+
+        [BindProperty]
+        public int SelectedSchoolId { get; set; }
 
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
@@ -35,6 +41,8 @@ namespace CoordinatingCompany.Pages.Requests
             {
                 return Page();
             }
+
+            Request.School = _context.Schools.FirstOrDefault(s => s.Id == SelectedSchoolId);
 
             _context.Request.Add(Request);
             await _context.SaveChangesAsync();

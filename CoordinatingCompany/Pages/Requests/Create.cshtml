@@ -57,15 +57,13 @@
                 <span asp-validation-for="Request.Form" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Request.Course.Id" class="control-label"></label>
-                <input asp-for="Request.Course.Id" class="form-control" />
-                <span asp-validation-for="Request.Course.Id" class="text-danger"></span>
+                <select asp-for="SelectedSchoolId" asp-items="Model.Schools" class="form-control"></select>
             </div>
-            <div class="form-group">
+            @*<div class="form-group">
                 <label asp-for="Request.School.Id" class="control-label"></label>
                 <input asp-for="Request.School.Id" class="form-control" />
                 <span asp-validation-for="Request.School.Id" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
