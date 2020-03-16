@@ -14,6 +14,9 @@ namespace CoordinatingCompany.Data
         {
         }
 
-        public DbSet<CoordinatingCompany.Models.Request> Request { get; set; }
+        public DbSet<Request> Request { get; set; }
+        public DbSet<School> Schools { get; set; }
+        public DbSet<Teacher> Teachers { get; set; }
+        public DbSet<Assignment> Assignments { get; set; }
     }
 }

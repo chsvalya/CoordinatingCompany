@@ -16,16 +16,9 @@ namespace CoordinatingCompany.Models
 
     public class Assignment
     {
+        public int Id { get; set; }
         public Status Status { get; set; }
-        public int TeacherId { get; set; }
-        public int RequestId { get; set; }
-
-        public Assignment(Status status, int teacherId, int requestId)
-        {
-            Status = status;
-            TeacherId = teacherId;
-            RequestId = requestId;
-        }
-
+        public Teacher Teacher { get; set; }
+        public Request Request { get; set; }
     }
 }

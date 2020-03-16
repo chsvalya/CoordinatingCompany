@@ -17,7 +17,7 @@ namespace CoordinatingCompany.Models
         [DataType(DataType.Date)]
         public DateTime? EndDate { get; set; }
         public int Form { get; set; }
-        public int CourseId { get; set; }
-        public int SchoolId { get; set; }
+        public Course Course { get; set; }
+        public School School { get; set; }
     }
 }

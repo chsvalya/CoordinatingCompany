@@ -11,15 +11,19 @@ namespace CoordinatingCompany.Models
         public string Name { get; set; }
         public int Age { get; set; }
         public string Phone { get; set; }
-        public int DepartmentId { get; set; }
+        public Department Department { get; set; }
 
-        public Teacher(int id, string name, int age, string phone, int depId)
+        public Teacher() {
+
+        }
+
+        public Teacher(int id, string name, int age, string phone, Department department)
         {
             Id = id;
             Name = name;
             Age = age;
             Phone = phone;
-            DepartmentId = depId;
+            Department = department;
         }
     }
 }

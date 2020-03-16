@@ -10,12 +10,6 @@ namespace CoordinatingCompany.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Head { get; set; }
-
-        public Department(int id, string name, string head)
-        {
-            Id = id;
-            Name = name;
-            Head = head;
-        }
+        public string Subject { get; set; }
     }
 }
