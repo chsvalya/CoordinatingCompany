@@ -19,11 +19,19 @@ namespace CoordinatingCompany.Pages.Requests
             _context = context;
         }
 
-        public IList<Request> Request { get;set; }
+        public IList<Assignment> Assignments { get;set; }
+        public string TeacherName { get; set; }
 
         public async Task OnGetAsync()
         {
-            Request = await _context.Request.ToListAsync();
+            Assignments = await _context.Assignments.Include(a => a.Request).Include(a => a.Request.School).
+                Include(a => a.Request.Course).Include(a => a.Request.Course.Department).ToListAsync();
+            TeacherName = _context.Teachers.First(t => t.Email == TempData.Peek("email").ToString()).Name;
+        }
+
+        public IActionResult OnPost()
+        {
+            return RedirectToPage("../Login");
         }
     }
 }

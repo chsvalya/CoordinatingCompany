@@ -20,7 +20,7 @@ namespace CoordinatingCompany.Pages.Requests
         }
 
         [BindProperty]
-        public Request Request { get; set; }
+        public Assignment Assignment { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,9 +29,11 @@ namespace CoordinatingCompany.Pages.Requests
                 return NotFound();
             }
 
-            Request = await _context.Request.FirstOrDefaultAsync(m => m.Id == id);
+            Assignment = await _context.Assignments.Include(a => a.Request).Include(a => a.Request.School).
+                Include(a => a.Request.Course).Include(a => a.Request.Course.Department).
+                FirstOrDefaultAsync(m => m.Id == id);
 
-            if (Request == null)
+            if (Assignment == null)
             {
                 return NotFound();
             }
@@ -45,11 +47,12 @@ namespace CoordinatingCompany.Pages.Requests
                 return NotFound();
             }
 
-            Request = await _context.Request.FindAsync(id);
+            Assignment = await _context.Assignments.FindAsync(id);
 
-            if (Request != null)
+            if (Assignment != null)
             {
-                _context.Request.Remove(Request);
+                Assignment.Status = Status.Canceled;
+                _context.Update(Assignment);
                 await _context.SaveChangesAsync();
             }
 

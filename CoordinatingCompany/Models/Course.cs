@@ -7,9 +7,9 @@ namespace CoordinatingCompany.Models
 {
     public enum Type
     {
-        ReadyToPassExams,
-        ReadyToWinOlympiads,
-        ReadyToLearnSomethingNew
+        Olympiads,
+        Exams,
+        SchoolProgram
     }
     public class Course
     {

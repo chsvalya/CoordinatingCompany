@@ -9,8 +9,6 @@ namespace CoordinatingCompany.Models
     {
         Created,
         TeacherApprove,
-        HeadOfDepartmentApprove,
-        SchoolConfirm,
         Canceled
     }
 
@@ -18,7 +16,7 @@ namespace CoordinatingCompany.Models
     {
         public int Id { get; set; }
         public Status Status { get; set; }
-        public Teacher Teacher { get; set; }
+        public Teacher? Teacher { get; set; }
         public Request Request { get; set; }
     }
 }

@@ -1,0 +1,62 @@
+﻿@page "/teacher/reg"
+@model CoordinatingCompany.Pages.TeacherRegModel
+@{
+    ViewData["Title"] = "Активация аккаунта";
+}
+
+<style>
+    p {
+        padding: 10px;
+    }
+
+    #left {
+        position: absolute;
+        left: 70px;
+        width: 40%;
+    }
+
+    #right {
+        position: absolute;
+        right: 0;
+        bottom: 100px;
+        width: 60%;
+    }
+</style>
+
+<p>
+    <h1>Активация аккаунта</h1>
+</p>
+
+<div id="left">
+    <h4>Для того, чтобы активировать свой аккаунт, впишите привязанную к аккаунту почту и придумайте пароль.</h4>
+    <hr />
+    
+    <form method="post" asp-page-handler="Submission">
+        <div class="form-group">
+            <input asp-for="EmailInput" type="email"class="form-control" required placeholder="Введите email">
+            <span asp-validation-for="EmailInput" class="text-danger" />
+        </div>
+
+        <div class="form-group">
+            <input asp-for="PasswordInput" type="password" class="form-control" required placeholder="Введите пароль">
+            <span asp-validation-for="PasswordInput" class="text-danger" />
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Активировать" class="btn btn-primary" />
+        </div>
+    </form>
+    
+    <hr />
+    <a href="/login">Вход</a>
+</div>
+
+<div id="right">
+    <p class="fig" align="center">
+        <img src="https://sun9-34.userapi.com/c858028/v858028903/1adaae/h3eEJr2eywg.jpg" height="500" width="400" />
+    </p>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

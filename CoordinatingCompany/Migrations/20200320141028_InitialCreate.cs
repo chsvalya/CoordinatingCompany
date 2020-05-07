@@ -23,7 +23,7 @@ namespace CoordinatingCompany.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Schools",
+                name: "School",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -33,7 +33,7 @@ namespace CoordinatingCompany.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Schools", x => x.Id);
+                    table.PrimaryKey("PK_School", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -50,28 +50,6 @@ namespace CoordinatingCompany.Migrations
                     table.PrimaryKey("PK_Course", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Course_Department_DepartmentId",
-                        column: x => x.DepartmentId,
-                        principalTable: "Department",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Teachers",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(nullable: true),
-                    Age = table.Column<int>(nullable: false),
-                    Phone = table.Column<string>(nullable: true),
-                    DepartmentId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Teachers", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Teachers_Department_DepartmentId",
                         column: x => x.DepartmentId,
                         principalTable: "Department",
                         principalColumn: "Id",
@@ -102,49 +80,12 @@ namespace CoordinatingCompany.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Request_Schools_SchoolId",
+                        name: "FK_Request_School_SchoolId",
                         column: x => x.SchoolId,
-                        principalTable: "Schools",
+                        principalTable: "School",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
-
-            migrationBuilder.CreateTable(
-                name: "Assignments",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Status = table.Column<int>(nullable: false),
-                    TeacherId = table.Column<int>(nullable: true),
-                    RequestId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Assignments", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Assignments_Request_RequestId",
-                        column: x => x.RequestId,
-                        principalTable: "Request",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Assignments_Teachers_TeacherId",
-                        column: x => x.TeacherId,
-                        principalTable: "Teachers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Assignments_RequestId",
-                table: "Assignments",
-                column: "RequestId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Assignments_TeacherId",
-                table: "Assignments",
-                column: "TeacherId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Course_DepartmentId",
@@ -160,29 +101,18 @@ namespace CoordinatingCompany.Migrations
                 name: "IX_Request_SchoolId",
                 table: "Request",
                 column: "SchoolId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Teachers_DepartmentId",
-                table: "Teachers",
-                column: "DepartmentId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Assignments");
-
-            migrationBuilder.DropTable(
                 name: "Request");
-
-            migrationBuilder.DropTable(
-                name: "Teachers");
 
             migrationBuilder.DropTable(
                 name: "Course");
 
             migrationBuilder.DropTable(
-                name: "Schools");
+                name: "School");
 
             migrationBuilder.DropTable(
                 name: "Department");

@@ -10,6 +10,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using CoordinatingCompany.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace CoordinatingCompany
 {
@@ -28,7 +31,7 @@ namespace CoordinatingCompany
             services.AddRazorPages();
 
             services.AddDbContext<CoordinatingCompanyContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("CoordinatingCompanyContext")));
+                options.UseSqlServer(Configuration.GetConnectionString("CoordinatingCompanyContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,8 +52,6 @@ namespace CoordinatingCompany
             app.UseStaticFiles();
 
             app.UseRouting();
-
-            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

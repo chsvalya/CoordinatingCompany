@@ -19,7 +19,8 @@ namespace CoordinatingCompany.Pages.Requests
             _context = context;
         }
 
-        public Request Request { get; set; }
+        [BindProperty]
+        public Assignment Assignment { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,13 +29,35 @@ namespace CoordinatingCompany.Pages.Requests
                 return NotFound();
             }
 
-            Request = await _context.Request.FirstOrDefaultAsync(m => m.Id == id);
+            Assignment = await _context.Assignments.Include(a => a.Request).Include(a => a.Request.School).
+                Include(a => a.Request.Course).Include(a => a.Request.Course.Department).
+                FirstOrDefaultAsync(m => m.Id == id);
 
-            if (Request == null)
+
+            if (Assignment == null)
             {
                 return NotFound();
             }
             return Page();
+        }
+
+        public async Task<IActionResult> OnPostAsync(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            Assignment = await _context.Assignments.FindAsync(id);
+
+            if (Assignment != null)
+            {
+                Assignment.Status = Status.TeacherApprove;
+                Assignment.Teacher = await _context.Teachers.FirstAsync(t => t.Email == TempData.Peek("email").ToString());
+                await _context.SaveChangesAsync();
+            }
+
+            return RedirectToPage("./Index");
         }
     }
 }

@@ -1,72 +1,91 @@
-﻿@page
+﻿@page 
 @model CoordinatingCompany.Pages.Requests.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Заявки";
 }
+<h1></h1>
 
-<h1>Index</h1>
-
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
+<h3>С возвращением, @Html.DisplayFor(model => model.TeacherName)! Вот список актуальных заявок</h3>
+<hr />
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Request[0].DayOfWeek)
+                @Html.DisplayNameFor(model => model.Assignments[0].Request.DayOfWeek)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Request[0].Time)
+                @Html.DisplayNameFor(model => model.Assignments[0].Request.Time)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Request[0].StartDate)
+                @Html.DisplayNameFor(model => model.Assignments[0].Request.StartDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Request[0].EndDate)
+                @Html.DisplayNameFor(model => model.Assignments[0].Request.EndDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Request[0].Form)
+                @Html.DisplayNameFor(model => model.Assignments[0].Request.Form)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Request[0].Course.Id)
+                @Html.DisplayNameFor(model => model.Assignments[0].Request.School)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Request[0].School.Id)
+                @Html.DisplayNameFor(model => model.Assignments[0].Request.Course.Department)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Assignments[0].Request.Course.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Assignments[0].Status)
+            <th>
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Request) {
+@foreach (var item in Model.Assignments) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.DayOfWeek)
+                @Html.DisplayFor(modelItem => item.Request.DayOfWeek)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Time)
+                @Html.DisplayFor(modelItem => item.Request.Time)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
+                @Html.DisplayFor(modelItem => item.Request.StartDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.EndDate)
+                @Html.DisplayFor(modelItem => item.Request.EndDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Form)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.CourseId)
+                @Html.DisplayFor(modelItem => item.Request.Form)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.SchoolId)
-            </td>*@
+                @Html.DisplayFor(modelItem => item.Request.School.Name)
+            </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                @Html.DisplayFor(modelItem => item.Request.Course.Department.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Request.Course.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                <a asp-page="./Details" asp-route-id="@item.Id">Принять</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Отклонить</a>
             </td>
         </tr>
 }
     </tbody>
 </table>
+<hr />
+<hr />
+
+<form method="post" asp-page-handler="Logout">
+    <div class="form-group" align="left">
+        <input type="submit" value="Выход из аккаунта" class="btn btn-dark" />
+    </div>
+</form>
+

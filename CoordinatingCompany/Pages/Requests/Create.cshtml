@@ -1,51 +1,47 @@
-﻿@page
+﻿@page "/requests/create"
 @model CoordinatingCompany.Pages.Requests.CreateModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Подать заявку";
 }
 
-<h1>Create</h1>
-
-<h4>Request</h4>
+<h3>Пожалуйста, заполните форму подачи заявки с желаемыми условиями занятий</h3>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Request.DayOfWeek" class="control-label"></label>
+                <label asp-for="Request.DayOfWeek" class="control-label">День недели занятий</label>
                 <select asp-for="Request.DayOfWeek" class="form-control">
-                        <option>Choose day of week</option>
-                        <option>Monday</option>
-                        <option>Tuesday</option>
-                        <option>Wednesday</option>
-                        <option>Thursday</option>
-                        <option>Friday</option>
-                        <option>Saturday</option>
-                        <option>Sunday</option>
+                    <option>Monday</option>
+                    <option>Tuesday</option>
+                    <option>Wednesday</option>
+                    <option>Thursday</option>
+                    <option>Friday</option>
+                    <option>Saturday</option>
+                    <option>Sunday</option>
                 </select>
                 <span asp-validation-for="Request.DayOfWeek" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Request.Time" class="control-label"></label>
+                <label asp-for="Request.Time" class="control-label">Время начала занятий</label>
                 <input asp-for="Request.Time" class="form-control" />
                 <span asp-validation-for="Request.Time" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Request.StartDate" class="control-label"></label>
+                <label asp-for="Request.StartDate" class="control-label">Дата начала занятий</label>
                 <input asp-for="Request.StartDate" class="form-control" />
                 <span asp-validation-for="Request.StartDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Request.EndDate" class="control-label"></label>
+                <label asp-for="Request.EndDate" class="control-label">Дата окончания занятий</label>
                 <input asp-for="Request.EndDate" class="form-control" />
                 <span asp-validation-for="Request.EndDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Request.Form" class="control-label"></label>
+                <label asp-for="Request.Form" class="control-label">Возраст детей (класс)</label>
                 <select asp-for="Request.Form" class="form-control">
-                    <option>Choose form</option>
                     <option>5</option>
                     <option>6</option>
                     <option>7</option>
@@ -57,22 +53,29 @@
                 <span asp-validation-for="Request.Form" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Request.School" class="control-label">Название школы</label>
                 <select asp-for="SelectedSchoolId" asp-items="Model.Schools" class="form-control"></select>
             </div>
-            @*<div class="form-group">
-                <label asp-for="Request.School.Id" class="control-label"></label>
-                <input asp-for="Request.School.Id" class="form-control" />
-                <span asp-validation-for="Request.School.Id" class="text-danger"></span>
-            </div>*@
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <label asp-for="Request.Course.Department" class="control-label">Предмет</label>
+                <select asp-for="SelectedDepartmentId" asp-items="Model.Departments" class="form-control"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Request.Course" class="control-label">Цель занятий</label>
+                <select asp-for="SelectedCourseId" asp-items="Model.Courses" class="form-control"></select>
+            </div>
+            <div style="color: red">
+                <h6 id="message" hidden>Ваша заявка успешно сохранена! Вы будете перенаправлены на стартовую страницу</h6>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Отправить заявку" onclick="toggleConfirm()" class="btn btn-primary">
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-page="Index">Back to List</a>
+    <a asp-page="Index">Назад</a>
 </div>
 
 @section Scripts {

@@ -1,0 +1,65 @@
+﻿@page "/login"
+@model CoordinatingCompany.Pages.LoginModel
+@{
+    ViewData["Title"] = "Вход в систему";
+}
+
+<style>
+    p {
+        padding: 7px;
+    }
+
+    #left {
+        position: absolute;
+        left: 70px;
+        width: 40%;
+    }
+
+    #right {
+        position: absolute;
+        right: 0;
+        bottom: 100px;
+        width: 60%;
+    }
+</style>
+
+<p>
+    <h1>Вход для учителя</h1>
+</p>
+
+<div id="left">
+    <h4>Войти в систему</h4>
+    <hr />
+
+    <form method="post" asp-page-handler="Login">
+        <div class="form-group">
+            <input asp-for="EmailInput" type="email" class="form-control" required placeholder="Введите email">
+            <span asp-validation-for="EmailInput" class="text-danger" />
+        </div>
+
+        <div class="form-group">
+            <input asp-for="PasswordInput" type="password" class="form-control" required placeholder="Введите пароль">
+            <span asp-validation-for="PasswordInput" class="text-danger" />
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Войти" class="btn btn-primary" />
+        </div>
+    </form>
+
+    <hr />
+    <a href="/teacher/reg/">Активация аккаунта для препода</a>
+</div>
+
+<div id="right">
+    <p class="fig" align="center">
+        <img src="https://sun9-18.userapi.com/c848732/v848732578/10e1ea/A2f6I_xHVIo.jpg" height="500" width="500" />
+    </p>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+
