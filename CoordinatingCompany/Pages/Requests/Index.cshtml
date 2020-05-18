@@ -6,7 +6,8 @@
 }
 <h1></h1>
 
-<h3>С возвращением, @Html.DisplayFor(model => model.TeacherName)! Вот список актуальных заявок</h3>
+<h3>С возвращением, @Html.DisplayFor(model => model.Teacher.Name)! </h3>
+<h3>Вот список актуальных заявок Департамента @Html.DisplayFor(model => model.Teacher.Department.Name).</h3> 
 <hr />
 <table class="table">
     <thead>
