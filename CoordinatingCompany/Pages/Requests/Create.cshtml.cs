@@ -20,7 +20,7 @@ namespace CoordinatingCompany.Pages.Requests
             _context = context;
             Schools = new SelectList(_context.Schools, nameof(School.Id), nameof(School.Name));
             Departments = new SelectList(_context.Departments, nameof(Department.Id), nameof(Department.Subject));
-            Courses = new SelectList(_context.Courses.Where(c => c.Department.Id == 3), nameof(Course.Id), nameof(Course.Type));
+            Courses = new SelectList(_context.Courses.Where(c => c.Department.Id == 1), nameof(Course.Id), nameof(Course.Type));
         }
 
         public IActionResult OnGet()

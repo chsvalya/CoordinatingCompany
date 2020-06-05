@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CoordinatingCompany.Migrations
 {
     [DbContext(typeof(CoordinatingCompanyContext))]
-    [Migration("20200505082444_AddTeachersTable")]
-    partial class AddTeachersTable
+    [Migration("20200605153715_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,31 @@ namespace CoordinatingCompany.Migrations
                 .HasAnnotation("ProductVersion", "3.1.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("CoordinatingCompany.Models.Assignment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("RequestId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TeacherId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RequestId");
+
+                    b.HasIndex("TeacherId");
+
+                    b.ToTable("Assignments");
+                });
 
             modelBuilder.Entity("CoordinatingCompany.Models.Course", b =>
                 {
@@ -144,6 +169,17 @@ namespace CoordinatingCompany.Migrations
                     b.HasIndex("DepartmentId");
 
                     b.ToTable("Teachers");
+                });
+
+            modelBuilder.Entity("CoordinatingCompany.Models.Assignment", b =>
+                {
+                    b.HasOne("CoordinatingCompany.Models.Request", "Request")
+                        .WithMany()
+                        .HasForeignKey("RequestId");
+
+                    b.HasOne("CoordinatingCompany.Models.Teacher", "Teacher")
+                        .WithMany()
+                        .HasForeignKey("TeacherId");
                 });
 
             modelBuilder.Entity("CoordinatingCompany.Models.Course", b =>

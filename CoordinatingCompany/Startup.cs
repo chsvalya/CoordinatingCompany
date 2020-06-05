@@ -48,6 +48,14 @@ namespace CoordinatingCompany
                 app.UseHsts();
             }
 
+            using (var serviceScope = app.ApplicationServices.
+                GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetService<CoordinatingCompanyContext>();
+                context.Database.Migrate();
+
+            }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
