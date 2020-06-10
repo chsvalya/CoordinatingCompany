@@ -8,19 +8,21 @@ using System.Web;
 using System.Text;
 using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
 using System.Threading;
+using System;
+using CoordinatingCompany.Data;
 
 namespace CoordinatingCompany.Pages.Requests
 {
     public class CreateModel : PageModel
     {
-        private readonly CoordinatingCompany.Data.CoordinatingCompanyContext _context;
+        private readonly CoordinatingCompanyContext _context;
 
-        public CreateModel(CoordinatingCompany.Data.CoordinatingCompanyContext context)
+        public CreateModel(CoordinatingCompanyContext context)
         {
             _context = context;
             Schools = new SelectList(_context.Schools, nameof(School.Id), nameof(School.Name));
             Departments = new SelectList(_context.Departments, nameof(Department.Id), nameof(Department.Subject));
-            Courses = new SelectList(_context.Courses.Where(c => c.Department.Id == 1), nameof(Course.Id), nameof(Course.Type));
+            Courses = new SelectList(Enum.GetValues(typeof(CourseType)).Cast<CourseType>().ToList());
         }
 
         public IActionResult OnGet()
@@ -39,10 +41,8 @@ namespace CoordinatingCompany.Pages.Requests
         [BindProperty]
         public int SelectedDepartmentId { get; set; }
         [BindProperty]
-        public int SelectedCourseId { get; set; }
+        public CourseType SelectedCourseType { get; set; }
 
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for
-        // more details see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -52,7 +52,7 @@ namespace CoordinatingCompany.Pages.Requests
 
             Request.School = _context.Schools.First(s => s.Id == SelectedSchoolId);
             Request.Course = _context.Courses.First(c => c.Department.Id == SelectedDepartmentId
-            && _context.Courses.First(c => c.Id == SelectedCourseId).Type == c.Type);
+            && SelectedCourseType == c.Type);
             Request.Course.Department = _context.Departments.First(d => d.Id == SelectedDepartmentId);
             _context.Requests.Add(Request);
             _context.Assignments.Add(new Assignment

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace CoordinatingCompany.Models
 {
-    public enum Type
+    public enum CourseType
     {
         Olympiads,
         Exams,
@@ -14,7 +14,7 @@ namespace CoordinatingCompany.Models
     public class Course
     {
         public int Id { get; set; }
-        public Type Type { get; set; }
+        public CourseType Type { get; set; }
         public Department Department { get; set; }
         public List<Request> Requests { get; set; }
     }
