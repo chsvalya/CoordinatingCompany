@@ -7,9 +7,9 @@ namespace CoordinatingCompany.Models
 {
     public enum CourseType
     {
-        Olympiads,
-        Exams,
-        SchoolProgram
+        Олимпиады,
+        Экзамены,
+        ШкольнаяПрограмма
     }
     public class Course
     {

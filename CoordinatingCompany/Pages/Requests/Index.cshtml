@@ -7,37 +7,37 @@
 <h1></h1>
 
 <h3>С возвращением, @Html.DisplayFor(model => model.Teacher.Name)! </h3>
-<h3>Вот список актуальных заявок Департамента @Html.DisplayFor(model => model.Teacher.Department.Name).</h3> 
+<h3>Вот список актуальных заявок Департамента "@Html.DisplayFor(model => model.Teacher.Department.Name)".</h3> 
 <hr />
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Assignments[0].Request.DayOfWeek)
+                День недели
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Assignments[0].Request.Time)
+                Время занятий
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Assignments[0].Request.StartDate)
+                Дата начала
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Assignments[0].Request.EndDate)
+                Дата окончания
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Assignments[0].Request.Form)
+                Класс
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Assignments[0].Request.School)
+                Школа
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Assignments[0].Request.Course.Department)
+                Предмет
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Assignments[0].Request.Course.Type)
+                Цель занятий
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Assignments[0].Status)
+                Статус
             <th>
             </th>
             <th></th>
@@ -65,7 +65,7 @@
                 @Html.DisplayFor(modelItem => item.Request.School.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Request.Course.Department.Name)
+                @Html.DisplayFor(modelItem => item.Request.Course.Department.Subject)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Request.Course.Type)

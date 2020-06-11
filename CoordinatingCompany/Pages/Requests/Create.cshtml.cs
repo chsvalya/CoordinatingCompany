@@ -10,6 +10,7 @@ using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
 using System.Threading;
 using System;
 using CoordinatingCompany.Data;
+using Microsoft.AspNetCore.Http;
 
 namespace CoordinatingCompany.Pages.Requests
 {
@@ -45,7 +46,8 @@ namespace CoordinatingCompany.Pages.Requests
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || Request.StartDate >= Request.EndDate 
+                || Request.StartDate <= DateTime.Now)
             {
                 return Page();
             }

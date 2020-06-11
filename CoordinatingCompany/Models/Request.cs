@@ -9,7 +9,7 @@ namespace CoordinatingCompany.Models
     public class Request
     {
         public int Id { get; set; }
-        public DayOfWeek DayOfWeek { get; set; } 
+        public string DayOfWeek { get; set; } 
         [DataType(DataType.Time)]
         public DateTime Time { get; set; }
         [DataType(DataType.Date)]

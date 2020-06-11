@@ -14,13 +14,13 @@
             <div class="form-group">
                 <label asp-for="Request.DayOfWeek" class="control-label">День недели занятий</label>
                 <select asp-for="Request.DayOfWeek" class="form-control">
-                    <option>Monday</option>
-                    <option>Tuesday</option>
-                    <option>Wednesday</option>
-                    <option>Thursday</option>
-                    <option>Friday</option>
-                    <option>Saturday</option>
-                    <option>Sunday</option>
+                    <option>Понедельник</option>
+                    <option>Вторник</option>
+                    <option>Среда</option>
+                    <option>Четверг</option>
+                    <option>Пятница</option>
+                    <option>Суббота</option>
+                    <option>Воскресенье</option>
                 </select>
                 <span asp-validation-for="Request.DayOfWeek" class="text-danger"></span>
             </div>
@@ -63,9 +63,6 @@
             <div class="form-group">
                 <label asp-for="Request.Course" class="control-label">Цель занятий</label>
                 <select asp-for="SelectedCourseType" asp-items="Model.Courses" class="form-control"></select>
-            </div>
-            <div style="color: red">
-                <h6 id="message" hidden>Ваша заявка успешно сохранена! Вы будете перенаправлены на стартовую страницу</h6>
             </div>
             <div class="form-group">
                 <input type="submit" value="Отправить заявку" onclick="toggleConfirm()" class="btn btn-primary">

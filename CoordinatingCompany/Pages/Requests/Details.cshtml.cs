@@ -12,9 +12,9 @@ namespace CoordinatingCompany.Pages.Requests
 {
     public class DetailsModel : PageModel
     {
-        private readonly CoordinatingCompany.Data.CoordinatingCompanyContext _context;
+        private readonly CoordinatingCompanyContext _context;
 
-        public DetailsModel(CoordinatingCompany.Data.CoordinatingCompanyContext context)
+        public DetailsModel(CoordinatingCompanyContext context)
         {
             _context = context;
         }
